@@ -33,7 +33,7 @@ class photo_gallery extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 6, left: 15, right: 15),
-                    height: (.4 * screenSize.height),
+                    height: (.95 * screenSize.width),
                     width: (.95 * screenSize.width),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40),
@@ -292,20 +292,36 @@ class photo_gallery extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {},
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  height: (.45 * screenSize.height),
-                                  width: (.45 * screenSize.width),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(30),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        Suggestions[index]["img"]!,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.all(10),
+                                      height: (.45 * screenSize.height),
+                                      width: (.45 * screenSize.width),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(30),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                            Suggestions[index]["img"]!,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    Container(
+                                      padding: const EdgeInsets.all(30),
+                                      alignment: Alignment.bottomLeft,
+                                      child: Text(
+                                        Suggestions[index]['title'] as String,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                             }),
